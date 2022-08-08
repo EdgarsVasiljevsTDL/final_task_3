@@ -1,0 +1,23 @@
+StartCallMeet:
+  Step: I open Meet Echo and register
+  Vars:
+    TIME: 20
+    INTERFACE: en0
+    VIDEO_IN: 1
+  Roles: 
+    - Role: desktopChrome1,desktopChrome2,desktopChrome3
+      App: desktop
+    - Role: commandLine
+      App: command
+  Actions:
+    - Given: I navigate and join room with some session name
+      Role: desktopChrome1
+    - And: I navigate and join room with some session name
+      Role: desktopChrome2
+    - And: I navigate and join room with some session name
+      Role: desktopChrome3
+    - Given: I start recording audio, video and traces
+    - And: I end the session for all users
+      Role: desktopChrome1,desktopChrome2,desktopChrome3 
+    - Then: I start analyzing audio, video and traces
+    - And: I get the current date

@@ -1,0 +1,101 @@
+Apps:
+  Chrome:
+    Package: com.android.chrome
+  PlayStore:
+    Package: com.android.vending
+    Activity: com.android.vending.AssetBrowserActivity
+
+chromeDriverPath: chromedriver
+
+Timeout: 15
+
+Devices:
+  - role: commandLine,commandLine1,commandLine2
+  # - role: desktopChrome
+  #   browser: chrome
+
+  - role: desktopChrome1
+    capabilities:
+          chromeOptions:
+            args:
+              - use-fake-ui-for-media-stream
+              - use-fake-device-for-media-stream
+              - no-sandbox
+              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
+              - disable-gpu
+    browser: chrome
+
+  - role: desktopChrome2
+    capabilities:
+          chromeOptions:
+            args:
+              - use-fake-ui-for-media-stream
+              - use-fake-device-for-media-stream
+              - no-sandbox
+              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
+              - disable-gpu
+    browser: chrome
+
+  - role: desktopChrome3
+    capabilities:
+          chromeOptions:
+            args:
+              - use-fake-ui-for-media-stream
+              - use-fake-device-for-media-stream
+              - no-sandbox
+              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/call.wav
+              - use-file-for-fake-video-capture=/Users/edgarsvasiljevs/Downloads/output.mjpeg
+    browser: chrome
+
+  - role: desktopFirefox
+    browser: firefox
+  - role: desktopSafari
+    browser: safari
+  - role: desktopIE
+    browser: ie
+  - role: desktopEdge
+    browser: edge
+  # ANDROID
+  - role: localAndroid
+    platform: Android
+
+#VARS
+
+Environments:
+  SleepEnv:
+    SetupCommands:
+      - sleep 2
+  Mark1:
+    Vars:
+      ENV1: ENV1
+      VAR_1: VAR_1
+      VAR_2: VAR_2
+    SetupCommands:
+      - echo Hello
+    Inherit:
+      - Inherited1
+  Mark2:
+    Inherit:
+      - InheritedVar
+  Inherited1:
+    Vars:
+      VAR_3: VAR_3
+      VAR_4: VAR_4
+    Inherit:
+      - Inherited2
+  Inherited2:
+    Vars:
+      VAR_5: VAR_5
+      VAR_6: VAR_6
+    SetupCommands:
+      - echo Hello
+  InheritedVar:
+    Vars:
+      VAR_1: HEY1
+  VarOverWriten:
+    Vars:
+      VAR_3: VAR_1 # Should Remain as it's the child
+      VAR_4: VAR_2 # Should Remain as it's the child
+    Inherit:
+      - Inherited1
+      - Inherited2

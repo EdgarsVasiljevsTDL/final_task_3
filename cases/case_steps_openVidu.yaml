@@ -1,0 +1,43 @@
+Recordings:
+  Step: I start recording audio, video and traces
+  Roles:
+    - Role: commandLine
+      App: command
+  Actions:
+    - Type: command
+      Value: "tshark -Q -i \"$AND_CLI_INTERFACE$\" -w trace.pcapng -a duration:$AND_CLI_TIME$"
+      Detach: True
+    - Type: command
+      Value: "sox -q -r 44100 -t coreaudio \"default\" callDegraded.wav trim 0 $AND_CLI_TIME$"
+      Detach: True
+    - Type: command
+      Value: "ffmpeg -v quiet -y -f avfoundation -t $AND_CLI_TIME$ -i \"$AND_CLI_VIDEO_IN$:\" recoutput.mkv"
+
+Analysis:
+  Step: I start analyzing audio, video and traces
+  Roles:
+    - Role: commandLine
+      App: command
+  Actions:
+    - Type: command
+      Value: sox callDegradedll.wav -b 16 callDegraded_16b.wav
+    - Type: command
+      Value: docker run --rm -v /$AND_CMD_pwd$/:/home alvarolaserna/visqol:1.0 ./visqol.sh /home/callDegraded_16b.wav /home/callDegraded_16b.wav
+      Greps:
+        - var: MOS_SCORE
+          condition: nempty
+          remove: "MOS-LQO:"
+          match: "MOS-LQO:(.*)"
+    - Type: command
+      Value: echo $AND_CLI_MOS_SCORE$ > mos.txt
+    - Type: command
+      Value: tshark -r trace.pcapng -qz io,stat,1 > trace.txt
+
+GetDate:
+  Step: I get the current date
+  Roles:
+    - Role: commandLine
+      App: command
+  Actions:
+    - Type: command
+      Value: date > date_start_test.txt

@@ -1,0 +1,11 @@
+JoinCall:
+  Step: I navigate and join room with some session name
+  Roles:
+    - Role: desktopChrome1
+      App: desktop
+  Actions:
+    - Type: navigate
+      Value: https://demos.openvidu.io/basic-videoconference/
+    - Type: click
+      Strategy: css
+      Id: "input[class=\"btn btn-lg btn-success\"]"

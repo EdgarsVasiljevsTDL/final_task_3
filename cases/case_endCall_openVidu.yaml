@@ -1,0 +1,9 @@
+EndCall:
+  Step: I end the session for all users
+  Roles:
+    - Role: desktopChrome1
+      App: desktop
+  Actions:
+    - Type: click
+      Strategy: css
+      Id: "#buttonLeaveSession"
