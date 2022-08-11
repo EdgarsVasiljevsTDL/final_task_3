@@ -6,6 +6,10 @@ JoinCall:
   Actions:
     - Type: navigate
       Value: https://demos.openvidu.io/basic-videoconference/
+    - Type: send_keys
+      Strategy: css
+      Id: "#sessionId"      
+      Value: $AND_CLI_SESSION$
     - Type: click
       Strategy: css
       Id: "input[class=\"btn btn-lg btn-success\"]"

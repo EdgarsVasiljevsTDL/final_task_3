@@ -4,6 +4,7 @@ StartCallMeet:
     TIME: 20
     INTERFACE: en0
     VIDEO_IN: 1
+    SESSION: SessionTDL
   Roles: 
     - Role: desktopChrome1,desktopChrome2,desktopChrome3
       App: desktop

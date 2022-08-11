@@ -20,7 +20,7 @@ Analysis:
       App: command
   Actions:
     - Type: command
-      Value: sox callDegradedll.wav -b 16 callDegraded_16b.wav
+      Value: sox callDegraded.wav -b 16 callDegraded_16b.wav
     - Type: command
       Value: docker run --rm -v /$AND_CMD_pwd$/:/home alvarolaserna/visqol:1.0 ./visqol.sh /home/callDegraded_16b.wav /home/callDegraded_16b.wav
       Greps:
