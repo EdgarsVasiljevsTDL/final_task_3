@@ -6,6 +6,10 @@ JoinCall:
   Actions:
     - Type: navigate
       Value: https://demos.openvidu.io/basic-videoconference/
+    - Type: clear_field
+      Strategy: css
+      Id: "#sessionId" 
+      NoRaise: false
     - Type: send_keys
       Strategy: css
       Id: "#sessionId"      
