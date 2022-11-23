@@ -5,13 +5,13 @@ Recordings:
       App: command
   Actions:
     - Type: command
-      Value: "tshark -Q -i \"$AND_CLI_INTERFACE$\" -w trace.pcapng -a duration:$AND_CLI_TIME$"
+      Value: 'tshark -Q -i "$AND_CLI_INTERFACE$" -w trace.pcapng -a duration:$AND_CLI_TIME$'
       Detach: True
     - Type: command
-      Value: "sox -q -r 44100 -t coreaudio \"default\" callDegraded.wav trim 0 $AND_CLI_TIME$"
+      Value: 'sox -q -r 44100 -t coreaudio "default" callDegraded.wav trim 0 $AND_CLI_TIME$'
       Detach: True
     - Type: command
-      Value: "ffmpeg -v quiet -y -f avfoundation -t $AND_CLI_TIME$ -i \"$AND_CLI_VIDEO_IN$:\" recoutput.mkv"
+      Value: 'ffmpeg -v quiet -y -f avfoundation -t $AND_CLI_TIME$ -i "$AND_CLI_VIDEO_IN$:" recoutput.mkv'
 
 Analysis:
   Step: I start analyzing audio, video and traces

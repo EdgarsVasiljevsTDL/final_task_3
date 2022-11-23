@@ -1,0 +1,27 @@
+JoinCall:
+  Step: I navigate and join room with some session name
+  Actions:
+    - Type: navigate
+      Value: https://meet.jit.si/
+    - Type: click
+      Strategy: css
+      Id: "#chrome-extension-banner__checkbox"
+    - Type: click
+      Strategy: css
+      Id: '[aria-label="Close"]'
+    - Type: clear_field
+      Strategy: css
+      Id: "#enter_room_field"
+    - Type: send_keys
+      Strategy: css
+      Id: "#enter_room_field"
+      Value: $AND_CLI_SESSION$
+    - Type: click
+      Strategy: css
+      Id: "#enter_room_button"
+    - Type: send_keys
+      Id: [autocomplete="name"]
+      Value: $AND_CLI_USERNAME$
+    - Type: click
+      Strategy: css
+      Id: '[aria-label="Join meeting"]'

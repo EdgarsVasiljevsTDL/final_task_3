@@ -11,42 +11,48 @@ Timeout: 15
 
 Devices:
   - role: commandLine,commandLine1,commandLine2
-  # - role: desktopChrome
-  #   browser: chrome
-
-  - role: desktopChrome1
-    capabilities:
-          chromeOptions:
-            args:
-              - use-fake-ui-for-media-stream
-              - use-fake-device-for-media-stream
-              - no-sandbox
-              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
-              - disable-gpu
-    browser: chrome
-
   - role: desktopChrome2
     capabilities:
-          chromeOptions:
-            args:
-              - use-fake-ui-for-media-stream
-              - use-fake-device-for-media-stream
-              - no-sandbox
-              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
-              - disable-gpu
+      chromeOptions:
+        args:
+          - disable-notifications
+          - use-fake-ui-for-media-stream
+          - use-fake-device-for-media-stream
+          - no-sandbox
+          - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
+          - disable-gpu
+          - --block-new-web-contents=True
+          - disable-component-update
+          - bypass-app-banner-engagement-checks
     browser: chrome
-
-  - role: desktopChrome3
+  - role: desktopChrome1
     capabilities:
-          chromeOptions:
-            args:
-              - use-fake-ui-for-media-stream
-              - use-fake-device-for-media-stream
-              - no-sandbox
-              - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/call.wav
-              - use-file-for-fake-video-capture=/Users/edgarsvasiljevs/Downloads/output.mjpeg
+      chromeOptions:
+        args:
+          - use-fake-ui-for-media-stream
+          - use-fake-device-for-media-stream
+          - no-sandbox
+          - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/silence.wav
+          - disable-gpu
+          - block-new-web-contents
+          - disable-notifications
+          - disable-component-update
+          - bypass-app-banner-engagement-checks
     browser: chrome
-
+  - role: desktopChrome
+    capabilities:
+      chromeOptions:
+        args:
+          - disable-component-update
+          - bypass-app-banner-engagement-checks
+          - block-new-web-contents
+          - disable-notifications
+          - use-fake-ui-for-media-stream
+          - use-fake-device-for-media-stream
+          - no-sandbox
+          - use-file-for-fake-audio-capture=/Users/edgarsvasiljevs/Downloads/call.wav
+          - use-file-for-fake-video-capture=/Users/edgarsvasiljevs/Downloads/output.mjpeg
+    browser: chrome
   - role: desktopFirefox
     browser: firefox
   - role: desktopSafari
